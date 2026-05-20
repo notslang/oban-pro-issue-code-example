@@ -11,6 +11,7 @@ defmodule Hello.Application do
       HelloWeb.Telemetry,
       Hello.Repo,
       {DNSCluster, query: Application.get_env(:hello, :dns_cluster_query) || :ignore},
+      {Oban, Application.fetch_env!(:hello, Oban)},
       {Phoenix.PubSub, name: Hello.PubSub},
       # Start a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg},
