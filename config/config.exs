@@ -8,9 +8,13 @@
 import Config
 
 config :hello, Oban,
-  engine: Oban.Engines.Basic,
+  engine: Oban.Pro.Engines.Smart,
+  plugins: [
+    Oban.Pro.Plugins.DynamicLifeline,
+    {Oban.Pro.Plugins.DynamicPruner, mode: {:max_age, 60 * 5}}
+  ],
   notifier: Oban.Notifiers.Postgres,
-  queues: [default: 10],
+  queues: [fetch: 10, process: 10],
   repo: Hello.Repo
 
 config :hello,
